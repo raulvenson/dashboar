@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
+import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -17,7 +17,7 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
-const Item = ({title, to, icon, selected, setSelected}) => {
+const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -186,6 +186,17 @@ const Sidebar = () => {
             >
               Charts
             </Typography>
+            {/* <SubMenu label="TESTE">
+              <MenuItem
+                active={selected === "Bar Chart"}
+                style={{ color: colors.grey[100] }}
+                onClick={() => setSelected("Bar Chart")}
+                icon={<BarChartOutlinedIcon />}
+              >
+                <Typography>Bar Chart</Typography>
+                <Link to="/bar" />
+              </MenuItem>
+            </SubMenu> */}
             <Item
               title="Bar Chart"
               to="/bar"
