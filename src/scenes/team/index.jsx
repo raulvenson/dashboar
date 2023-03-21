@@ -6,10 +6,24 @@ import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettin
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../components/Header";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 const Team = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
+  const [team, setTeam] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8181/api/team")
+      .then((resp) => {
+        console.log(resp);
+        setTeam(resp);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const columns = [
     { field: "id", headerName: "ID" },
@@ -105,7 +119,7 @@ const Team = () => {
       >
         <DataGrid
           checkboxSelection
-          rows={mockDataTeam}
+          rows={team}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
         />
